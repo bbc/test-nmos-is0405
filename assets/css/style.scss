@@ -3,18 +3,26 @@
 
 @import "{{ site.theme }}";
 
+$dark: #418ab3;
+$mid_dark: #6faacb;
+$mid_light: #a5cadf;
+$light: #d1e4ef;
+
 body {
     margin: 0;
     background-color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
+
+  a {
+    color: $dark;
+  }
   
   h1 {
-    color: blue;
+    color: $dark;
     text-align: center;
   }
 
-  
   .markdown-body {
     font-family: Arial, Helvetica, sans-serif;
   }
@@ -39,15 +47,22 @@ body {
   #logo-banner {
     display: table;
     width: 1024px;
-    background-color: #80a0ff;
+    background-color: $dark;
 
     #nmos-logo {
       display: table-cell;
       width: 191px;
       height: 64px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      // border: 3px solid red;
+      margin: 10px;
+      background-color: $dark;
+    }
+
+    #amwa-logo {
+      display: table-cell;
+      width: 191px;
+      height: 64px;
+      margin: 10px;
+      background-color: $dark;
     }
 
     #title {
@@ -57,19 +72,17 @@ body {
         font-size: 175%;
         padding-top: 10px;
         padding-bottom: 10px;
-        color: #f1f1f1;
-        background-color: #80a0ff;
-        // border: 3px solid green;
+        color: $light;
+        background-color: $dark;
     }
 
-    #amwa-logo {
+    #from-amwa-logo {
       display: table-cell;
       align-self: center;
       width: 243px;
       height: 64px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      // border: 3px solid red;
+      margin: 10px;
+      background-color: $dark;
     }
   }
   
@@ -82,7 +95,7 @@ body {
     line-height: 48px;
     width: 1024px;
     font-size: 100%;
-    background: #4040ff;
+    background: $mid_light;
     z-index: 1;
 
     a {
@@ -91,7 +104,7 @@ body {
         line-height: normal;
         padding-left: 10px;
         padding-right: 10px;
-        color: #f1f1f1;
+        color: $dark;
     }
 
     .dropdown {
@@ -100,13 +113,13 @@ body {
       line-height: normal;
       padding-left: 10px;
       padding-right: 10px;
-      color: #f1f1f1;
+      color: $dark;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #4040ff;
+      background-color: $mid_light;
       min-width: 100px;
       padding: 12px 16px;
       z-index: 1;
@@ -120,18 +133,21 @@ body {
       .breadcrumbs {
         height: 40px;
         line-height: 40px;
-        background: #80a0ff;
+        background: $light;
 
         a {
-            color: #4040ff;
+            color: $dark;
         }
       }
 
       .version-warning {
-        background-color: #ff8080;
-        color: #ff80ff;
+        background-color: #eea892;
         padding-left: 10px;
         padding-right: 10px;
+        
+        a {
+          color: #df5327;
+        }
       }
 
   }

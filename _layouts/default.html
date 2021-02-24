@@ -13,26 +13,38 @@
     <div class="container-lg px-3 my-5 markdown-body">
 
       <div id="logo-banner">
-        <a href="https://amwa-tv.github.io/nmos"><img id="nmos-logo" src="{{ site.baseurl }}/assets/images/NMOS-80a0ff.png" alt="NMOS logo"/></a>
-        <span id="title">Networked Media Open Specifications</span>
-        <a href="https://www.amwa.tv/"><img id="amwa-logo" src="{{ site.baseurl }}/assets/images/from-AMWA-80a0ff.png" target="_blank" alt="from AMWA logo"/></a>
+          {% if site.amwa_id == "SPECS" %}
+              <a href="https://www.amwa.tv"><img id="amwa-logo" src="{{ site.baseurl }}/assets/images/AMWA-logo.png" alt="AMWA logo"/></a>
+              <span id="title">Advanced Media Workflow Association</span>
+              <a href="https://www.amwa.tv"><img id="amwa-logo" src="{{ site.baseurl }}/assets/images/AMWA-logo.png" alt="AMWA logo"/></a>
+
+          {% else %}
+              <a href="https://{{ site.spec_server }}/nmos"><img id="nmos-logo" src="{{ site.baseurl }}/assets/images/NMOS-logo.png" alt="NMOS logo"/></a>
+              <span id="title">Networked Media Open Specifications</span>
+              <a href="https://www.amwa.tv/"><img id="from-amwa-logo" src="{{ site.baseurl }}/assets/images/from-AMWA-logo.png" target="_blank" alt="from AMWA logo"/></a>
+
+          {% endif %}
       </div>
 
         <div class="header" id="myHeader">
 
-        {% unless site.amwa_id contains "IS-" or site.amwa_id contains "MS-" or site.amwa_id contains "BCP-003-" or site.amwa_id contains "BCP-004-" %}
+        {% unless site.amwa_id contains "IS-" or site.amwa_id contains "MS-" or site.amwa_id contains "BCP-002-" or site.amwa_id contains "BCP-003-" or site.amwa_id contains "BCP-004-" %}
             <a href="{{ site.baseurl }}/">HOME</a>
         {% endunless %}
 
           {% case site.amwa_id %}
 
+          {% when "SPECS" %}
+            <a href="https://specs.amwa.tv/nmos">NMOS</a>
+            <a href="https://amwa.tv/projects/AS-11.shtml">AS-11</a>
+
           {% when "NMOS" %}
-            <a href="{{ site.baseurl }}/branches/master/NMOS_Technical_Overview.html">OVERVIEW</a>  
+            <a href="{{ site.baseurl }}/branches/main/docs/2.0._Technical_Overview.html">OVERVIEW</a>
 
           {% when "BCP-002" %}
             <span class="dropdown">RECS...
                 <div class="dropdown-content">
-                  <p><a href="{{ site.baseurl }}/branches/master/best-practice-natural-grouping.html">Natural Grouping</a></p>
+                  <p><a href="{{ site.baseurl }}/branches/main/best-practice-natural-grouping.html">Natural Grouping</a></p>
                 </div>
             </span>
 
@@ -82,7 +94,7 @@
               </span>
               <span class="dropdown">VERSIONS...
                 <div class="dropdown-content">
-                  <p><a href="{{ site.baseurl }}/tags">PUBLISHED RELEASES (TAGS)</a></p>
+                  <p><a href="{{ site.baseurl }}/releases">PUBLISHED RELEASES</a></p>
                   <p><a href="{{ site.baseurl }}/branches">DEVELOPMENT BRANCHES</a></p>
                 </div>
               </span>
@@ -92,52 +104,57 @@
               UNKNOWN ID
           {% endcase %}
 
-          <a href="{{ site.github.repository_url }}">REPO</a>
-          <span class="dropdown">INFO...
-            <div class="dropdown-content">
-                <p><a href="https://amwa-tv.github.io/nmos/branches/master/FAQ.html">FAQ</a></p>
-                <p><a href="https://amwa-tv.github.io/nmos/branches/master/Glossary.html">Glossary</a></p>
-                <p><a href="https://amwa-tv.github.io/nmos/branches/master/NMOS-Solutions.html">Implementations</a></p>
-                <p><a href="https://github.com/AMWA-TV/nmos/wiki">WIKI</a></p>
-            </div>
-          </span>
-          <span class="dropdown">TOOLS...
-            <div class="dropdown-content">
-              <p><a href="https://amwa-tv.github.io/nmos-testing">API Testing Tool</a></p>
-              <p><a href="https://amwa-tv.github.io/nmos/Dashboard.html">CI Dashboard</a></p>
-            </div>
-          </span>
-          <span class="dropdown">IS-...
-              <div class="dropdown-content">
-                  <p><a href="https://amwa-tv.github.io/nmos-discovery-registration">IS-04 Discovery & Registration</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-device-connection-management">IS-05 Connection Management</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-network-control">IS-06 Network Control</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-event-tally">IS-07 Event & Tally</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-audio-channel-mapping">IS-08 Audio Channel Mapping</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-system">IS-09 System Parameters</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-authorization">IS-10 Authorization</a></p>
-              </div>
+          {% if site.amwa_id != "SPECS" %}
+
+              <a href="{{ site.github.repository_url }}">REPO</a>
+              <span class="dropdown">INFO...
+                <div class="dropdown-content">
+                    <p><a href="https://{{ site.spec_server }}/nmos/branches/main/docs/3.0._FAQ.html">FAQ</a></p>
+                    <p><a href="https://{{ site.spec_server }}/nmos/branches/main/docs/4.0._Glossary.html">Glossary</a></p>
+                    <p><a href="https://{{ site.spec_server }}/nmos/branches/main/docs/5.0._NMOS_Solutions.html">Implementations</a></p>
+                    <p><a href="https://github.com/AMWA-TV/nmos/wiki">WIKI</a></p>
+                </div>
               </span>
-              <span class="dropdown">BCP-...
-              <div class="dropdown-content">
-                  <p><a href="https://amwa-tv.github.io/nmos-grouping">BCP-002 Grouping</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-api-security">BCP-003 API Security</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-secure-communication">BCP-003-01 Secure Communications</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-authorization-practice">BCP-003-02 Authorization Practice</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-certificate-provisioning">BCP-003-03 Certificate Provisioning</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-receiver-capabilities">BCP-004-01 Receiver Capabilities</a></p>
-              </div>
+              <span class="dropdown">TOOLS...
+                <div class="dropdown-content">
+                    <p><a href="https://{{ site.spec_server }}/nmos-testing">API Testing Tool</a></p>
+                    <p><a href="https://{{ site.spec_server }}/nmos/Dashboard.html">CI Dashboard</a></p>
+                </div>
               </span>
-              <span class="dropdown">MORE...
-              <div class="dropdown-content">
-                  <p><a href="https://amwa-tv.github.io/nmos">General NMOS Documentation</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-id-timing-model">MS-04 Identity & Timing Model</a></p>
-                  <p><a href="https://amwa-tv.github.io/nmos-parameter-registers">Parameter Registers</a></p>
-              </div>
-              </span>
+              <span class="dropdown">IS-...
+                  <div class="dropdown-content">
+                      <p><a href="https://{{ site.spec_server }}/is-04">IS-04 Discovery &amp; Registration</a></p>
+                      <p><a href="https://{{ site.spec_server }}/is-05">IS-05 Connection Management</a></p>
+                      <p><a href="https://{{ site.spec_server }}/is-06">IS-06 Network Control</a></p>
+                      <p><a href="https://{{ site.spec_server }}/is-07">IS-07 Event &amp; Tally</a></p>
+                      <p><a href="https://{{ site.spec_server }}/is-08">IS-08 Audio Channel Mapping</a></p>
+                      <p><a href="https://{{ site.spec_server }}/is-09">IS-09 System Parameters</a></p>
+                      <p><a href="https://{{ site.spec_server }}/is-10">IS-10 Authorization</a></p>
+                  </div>
+                  </span>
+                  <span class="dropdown">BCP-...
+                  <div class="dropdown-content">
+                      <p><a href="https://{{ site.spec_server }}/bcp-002">BCP-002 Grouping</a></p>
+                      <p><a href="https://{{ site.spec_server }}/bcp-002-01">BCP-002-01 Natural Grouping</a></p>
+                      <p><a href="https://{{ site.spec_server }}/bcp-003">BCP-003 API Security</a></p>
+                      <p><a href="https://{{ site.spec_server }}/bcp-003-01">BCP-003-01 Secure Communications</a></p>
+                      <p><a href="https://{{ site.spec_server }}/bcp-003-02">BCP-003-02 Authorization Practice</a></p>
+                      <p><a href="https://{{ site.spec_server }}/bcp-003-03">BCP-003-03 Certificate Provisioning</a></p>
+                      <p><a href="https://{{ site.spec_server }}/bcp-004-01">BCP-004-01 Receiver Capabilities</a></p>
+                  </div>
+                  </span>
+                  <span class="dropdown">MORE...
+                  <div class="dropdown-content">
+                      <p><a href="https://{{ site.spec_server }}/nmos">General NMOS Documentation</a></p>
+                      <p><a href="https://{{ site.spec_server }}/ms-04">MS-04 Identity &amp; Timing Model</a></p>
+                      <p><a href="https://{{ site.spec_server }}/nmos-parameter-registers">Parameter Registers</a></p>
+                  </div>
+                  </span>
+              {% endif %}
+
               <span class="dropdown">SEARCH
               <div class="dropdown-content">
-                  <script async src="https://cse.google.com/cse.js?cx=004212447740789395294:1oujtmtgsky"></script>
+                  <script async src="https://cse.google.com/cse.js?cx=70787015d40930818"></script>
                   <div class="gcse-searchbox-only"></div>
               </div>
           </span>
@@ -153,14 +170,14 @@
                 <a href="{{ link }}"> {{ dirlist[i] }} </a> ➤
               {% endfor %}
               {% if dirlist.size > 2 %}
-                 {% if dirlist[1] == "branches" %}
-                     <span class="version-warning"><a href="{{ site.baseurl }}/tags">Viewing development version. Click here for list of published versions.</a></span>
-                 {% elsif dirlist[1] == "tags" %}
-                     {% assign this_tree = dirlist[2] | prepend: "tags/" %}
-                     {% if this_tree != site.default_tree  %}
-                         <span class="version-warning"><a href="{{ site.baseurl }}/tags">Viewing old version. Click here for list of published versions.</a></span>
-                     {% endif %}
-                 {% endif %}
+                {% if dirlist[1] == "branches" %}
+                  <span class="version-warning"><a href="{{ site.baseurl }}/releases">Viewing development version. Click here for list of published versions.</a></span>
+                {% elsif dirlist[1] == "releases" %}
+                  {% assign this_tree = dirlist[2] | prepend: "releases/" %}
+                  {% if this_tree != site.default_tree  %}
+                    <span class="version-warning"><a href="{{ site.baseurl }}/releases">Viewing old version. Click here for list of published versions.</a></span>
+                  {% endif %}
+                {% endif %}
               {% endif %}
               </div>
         {% endif %}
@@ -172,17 +189,17 @@
       </div>
 
       <div class="footer border-top border-gray-light mt-5 pt-3 text-center text-gray">
-          Documentation built at {{ site.time | date: '%H:%M:%S %Z on %Y-%m-%d' }}. <br/> 
+          Documentation built at {{ site.time | date: '%H:%M:%S %Z on %Y-%m-%d' }}. <br/>
       {% if site.github.private != true and site.github.license %}
-      (c) AMWA {{ site.time | date: '%Y' }}. 
-      RAML/JSON licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a>. 
+      (c) AMWA {{ site.time | date: '%Y' }}.
+      RAML/JSON licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a>.
       Documentation licensed under <a href="http://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0</a>.
       {% endif %}
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
     <script>anchors.add();</script>
-    
+
     {% if site.google_analytics %}
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -197,10 +214,10 @@
 
     <script>
     window.onscroll = function() {myFunction()};
-    
+
     var header = document.getElementById("myHeader");
     var sticky = header.offsetTop;
-    
+
     function myFunction() {
       if (window.pageYOffset > sticky) {
         header.classList.add("sticky");
